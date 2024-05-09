@@ -111,7 +111,7 @@ watch([() => state.value0, () => state.options, () => props.params.params], (new
 </script>
 <template>
   <div :class="[ns.b()]">
-    <el-checkbox-group v-model="state.value0">
+    <el-checkbox-group v-model="state.value0" size="small">
       <el-checkbox v-for="item in constraintOptionsData" :key="item.value" :label="item.value" :disabled="item.disabled">
         {{ item.label }}
       </el-checkbox>

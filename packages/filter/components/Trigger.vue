@@ -48,5 +48,6 @@ const filterMethod = (node, keyword) => {
     :props="{
         emitPath: false
       }"
-    :options="newOptions"/>
+    :options="newOptions"
+    size="small"/>
 </template>

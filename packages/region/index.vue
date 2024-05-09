@@ -285,6 +285,7 @@ onMounted(() => {
       effect="light"
       placement="bottom-start"
       :visible="state.popperVisible"
+      size="small"
     >
       <div
         :class="[ns.e('regin')]"
@@ -299,6 +300,7 @@ onMounted(() => {
           :placeholder="searchInputValue ? '' : '请输入'"
           v-model="state.value0"
           @input="handleInput"
+          size="small"
         >
           <template #suffix>
             <el-icon
@@ -328,7 +330,7 @@ onMounted(() => {
             v-for="tag in presentTags"
             :key="tag.key"
             type="info"
-            size="default"
+            size="small"
             :closable="tag.closable"
             disable-transitions
             @close="deleteTag(tag)"
@@ -342,6 +344,7 @@ onMounted(() => {
                 :fallback-placements="['bottom', 'top', 'right', 'left']"
                 placement="bottom"
                 effect="light"
+                size="small"
               >
                 <template #default>
                   <span>{{ tag.text }}</span>
@@ -357,7 +360,7 @@ onMounted(() => {
                         :key="tag2.key"
                         class="in-tooltip"
                         type="info"
-                        size="default"
+                        size="small"
                         :closable="tag2.closable"
                         disable-transitions
                         @close="deleteTag(tag2)"
@@ -381,12 +384,13 @@ onMounted(() => {
       </div>
       <template #content>
         <div>
-          <el-tabs v-show="!filtering" v-model="state.activeName" class="demo-tabs">
+          <el-tabs v-show="!filtering" v-model="state.activeName" class="demo-tabs" size="small">
             <el-tab-pane v-for="(item, index) in state.menus" :key="item.name" :label="item.label" :name="item.name">
               <el-scrollbar
                 tag="ul"
                 :wrap-class="ns.e('wrap')"
                 :view-class="ns.e('list')"
+                size="small"
               >
                 <li
                   v-for="node in item.nodes"
@@ -398,6 +402,7 @@ onMounted(() => {
                     :model-value="node.checked"
                     @click.stop
                     @update:model-value="(val) => handleEvent('checkbox', node, index, val)"
+                    size="small"
                   />
                   <span :class="[ns.e('label')]">{{node.label}}</span>
                   <template v-if="!node.isLeaf">
@@ -415,6 +420,7 @@ onMounted(() => {
             tag="ul"
             :wrap-class="ns.e('wrap')"
             :view-class="ns.e('list')"
+            size="small"
           >
             <template v-if="suggestions.length">
               <li
@@ -426,6 +432,7 @@ onMounted(() => {
                   @update:model-value="(val) => handleEvent('checkbox', node, -1, val)"
                   :model-value="node.checked"
                   @click.stop
+                  size="small"
                 />
                 <span :class="[ns.e('label')]">{{node.text}}</span>
               </li>

@@ -81,6 +81,7 @@ defineExpose({
     clearable
     default-first-option
     collapse-tags
+    size="small"
   >
     <el-option
       v-for="item in newOptions"

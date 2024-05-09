@@ -162,19 +162,19 @@ const handleLang = (val) => {
 }
 </script>
 <template>
-  <el-form label-width="120px">
+  <el-form label-width="120px" size="small">
     <el-form-item label="Lang">
-      <el-radio-group v-model="lang" @change="handleLang">
-        <el-radio label="zh-cn" size="large">中文</el-radio>
-        <el-radio label="en" size="large">English</el-radio>
+      <el-radio-group v-model="lang" @change="handleLang" size="small">
+        <el-radio label="zh-cn" size="small">中文</el-radio>
+        <el-radio label="en" size="small">English</el-radio>
       </el-radio-group>
     </el-form-item>
     <el-form-item label="filter type">
-      <el-radio-group v-model="state.type">
-        <el-radio label="linear" size="large" border>Linear(一维)</el-radio>
-        <el-radio label="matrix" size="large" border>Matrix(二维)</el-radio>
-        <el-radio label="quick-search" size="large" border>Quick search(仅支持renderType=TEXT)</el-radio>
-        <el-radio label="quick-filter" size="large" border>Quick filter</el-radio>
+      <el-radio-group v-model="state.type" size="small">
+        <el-radio label="linear" size="small" border>Linear(一维)</el-radio>
+        <el-radio label="matrix" size="small" border>Matrix(二维)</el-radio>
+        <el-radio label="quick-search" size="small" border>Quick search(仅支持renderType=TEXT)</el-radio>
+        <el-radio label="quick-filter" size="small" border>Quick filter</el-radio>
       </el-radio-group>
     </el-form-item>
   </el-form>

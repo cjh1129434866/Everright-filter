@@ -70,6 +70,7 @@ defineExpose({
     collapse-tags
     clearable
     :options="state.options"
+    size="small"
   >
     <el-option
       v-for="item in state.options"
@@ -84,5 +85,6 @@ defineExpose({
     @change="handleCurrentChange"
     v-else
     :class="[ns.e('width'), v$.value0.$error && ER.props.isShowValidateState && 'ERFILTER-ERROR', utils.addTestId(`${NAME.TEXTTYPE}-input`, 'id')]"
-    v-model="state.value0"/>
+    v-model="state.value0"
+    size="small"/>
 </template>

@@ -42,7 +42,8 @@ watch(() => props.modelValue, (val, oldVal) => {
       :popperClass="utils.addTestId('dateOperator-popperClass', 'id')"
       v-model="state.value0"
       v-show="!(options[0].length === 1)"
-      filterable>
+      filterable
+      size="small">
       <el-option
         v-for="item in options[0]"
         :key="item.value"
@@ -58,7 +59,8 @@ watch(() => props.modelValue, (val, oldVal) => {
     v-model="state.value1"
     :class="[ns.e('width'), utils.addTestId('operator', 'id')]"
     :popperClass="utils.addTestId('operator-popperClass', 'id')"
-    filterable>
+    filterable
+    size="small">
     <el-option
       v-for="item in options[1]"
       :key="item.value"

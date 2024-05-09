@@ -261,6 +261,7 @@ const addGroupLabel = computed(() => {
           :class="[ns.e('add')]"
           @click="addItem"
           link
+          size="small"
         >{{ addGroupLabel }}</el-button>
       </div>
     </div>

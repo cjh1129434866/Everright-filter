@@ -13,6 +13,10 @@
     background: #f9f9f9 !important;
     border: #f9f9f9;
     color: black;
+    span {
+      font-weight: 600;
+      color: var(--el-color-primary);
+    }
   }
   @include e(quick-search) {
     padding: 0;

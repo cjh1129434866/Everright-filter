@@ -86,6 +86,7 @@ const options0 = computed(() => {
       v-model="state.value0"
       filterable
       clearable
+      size="small"
     >
       <el-option
         v-for="item in options0"
@@ -107,6 +108,7 @@ const options0 = computed(() => {
         v-model="state.value1"
         filterable
         clearable
+        size="small"
       >
         <el-option
           v-for="item in options0"

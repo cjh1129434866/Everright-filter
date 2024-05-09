@@ -58,7 +58,8 @@ defineExpose({
     :step="params.step"
     :precision="params.precision"
     :placeholder="t('er.public.TypeIn')"
-    controls-position="right"/>
+    controls-position="right"
+    size="small"/>
   <template v-if="isRange">
     <div>-</div>
     <el-input-number
@@ -70,6 +71,7 @@ defineExpose({
       :step="params.step"
       :placeholder="t('er.public.TypeIn')"
       :precision="params.precision"
-      controls-position="right"/>
+      controls-position="right"
+      size="small"/>
   </template>
 </template>

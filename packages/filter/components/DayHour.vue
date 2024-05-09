@@ -109,6 +109,7 @@ const handleEvent = (type, val) => {
           :min="1"
           :controls="false"
           @change="(val) => handleEvent('input', val)"
+          size="small"
         />
         <span v-if="type === 1" :class="[ns.e('suffix')]">{{ t('er.public.days') }}</span>
         <span v-else-if="type === 2" :class="[ns.e('suffix')]">{{ t('er.public.hours') }}</span>
@@ -117,7 +118,7 @@ const handleEvent = (type, val) => {
           v-model="state.value2"
           :teleported="false"
           @change="(val) => handleEvent('select', val)"
-          :class="[ns.e('suffix')]">
+          :class="[ns.e('suffix')]" size="small">
           <el-option
             v-for="item in options"
             :key="item.value"
@@ -138,6 +139,7 @@ const handleEvent = (type, val) => {
            :min="1"
            :controls="false"
            @change="(val) => handleEvent('input', val)"
+           size="small"
          />
          <span v-if="type === 1" :class="[ns.e('suffix')]">{{ t('er.public.days') }}</span>
          <span v-else-if="type === 2" :class="[ns.e('suffix')]">{{ t('er.public.hours') }}</span>
@@ -146,7 +148,7 @@ const handleEvent = (type, val) => {
            v-model="state.value3"
            :teleported="false"
            @change="(val) => handleEvent('select', val)"
-           :class="[ns.e('suffix')]">
+           :class="[ns.e('suffix')]" size="small">
            <el-option
              v-for="item in options"
              :key="item.value"

@@ -132,6 +132,7 @@ const filterMethod = (node, keyword) => {
       :popperClass="utils.addTestId(`${NAME.CASCADERTYPE}-popperClass`, 'id')"
       ref="element"
       v-bind="componentProps"
+      size="small"
     />
 <!--    <el-cascader-->
 <!--      clearable-->

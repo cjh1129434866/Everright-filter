@@ -2,5 +2,12 @@
   @include e(width) {
     width: map.get($component-width, 'operator');;
     flex-shrink: 0;
+    .el-select__wrapper {
+      width: 100%;
+      background-color: RGB(229,244,255, .8);
+      .el-select__placeholder{
+        color: var(--el-color-primary)
+      }
+    }
   }
 }

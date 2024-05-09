@@ -60,5 +60,6 @@ defineExpose({
     :arrow-control="!isTest"
     :placeholder="t('er.public.select')"
     :valueFormat="params.format"
+    size="small"
   />
 </template>

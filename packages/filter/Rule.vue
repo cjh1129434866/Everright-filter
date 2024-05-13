@@ -63,6 +63,7 @@ if (!isInConstraint) {
 </script>
 <template>
   <div :class="[ns.b(), (!isInConstraint && !/^quick-(search|filter)$/.test(ER.props.type)) && ns.e('border')]">
+    <div class="rule-index">{{ ++index.split('-')[1] }}</div>
     <PickerComponent
       ref="pickerRef"
       :id="id"

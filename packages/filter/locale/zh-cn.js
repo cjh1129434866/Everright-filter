@@ -19,7 +19,12 @@ export default {
     FilterItem: {
       itemLabel: '条件组',
       addCondition: '添加条件',
-      addProp: '添加属性'
+      addProp: '添加属性',
+      conditionTag: '标签',
+      conditionSegmentCategory: '客群',
+      conditionDetail: '明细数据',
+      conditionCustomer: '客户数据',
+      conditionBehavior: '行为数据'
     },
     EverrightFilter: {
       addGroupLabel: '添加条件组'

@@ -9,6 +9,7 @@ import utils from '@ER/utils'
 export default {
   name: NAME.FILTERITEM
 }
+
 </script>
 <script setup>
 const ER = inject('Everright')
@@ -128,6 +129,9 @@ const itemLabel = computed(() => {
           size="small"
           :icon="Delete"
         ><el-icon><Plus /></el-icon>{{isInConstraint ? t(`er.${NAME.FILTERITEM}.addProp`) : t(`er.${NAME.FILTERITEM}.addCondition`)}}</el-button>
+        <div>
+          <el-button link></el-button>
+        </div>
       </div>
     </div>
   </div>

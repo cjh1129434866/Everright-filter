@@ -1,3 +1,11 @@
+<!--
+ * @Author: panghu chenjh@datamargin.com
+ * @Date: 2024-05-09 11:26:29
+ * @LastEditors: panghu chenjh@datamargin.com
+ * @LastEditTime: 2024-08-05 18:01:52
+ * @FilePath: \Everright-filter\packages\filter\components\Trigger.vue
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 <script>
 import { ref, computed, nextTick, reactive, inject, defineExpose } from 'vue'
 import _ from 'lodash-es'
@@ -35,7 +43,8 @@ const filterMethod = (node, keyword) => {
   return node.text.toLowerCase().includes(keyword.toLowerCase())
 }
 </script>
-<template>
+<script>
+/**
   <el-cascader
     :class="[ns.b(), utils.addTestId(NAME.TRIGGERCOMPONENT, 'id')]"
     ref="element"
@@ -50,4 +59,21 @@ const filterMethod = (node, keyword) => {
       }"
     :options="newOptions"
     size="small"/>
+ */
+</script>
+<template>
+  <el-select
+    ref="element"
+    v-model="modelValue"
+    :class="[ns.b(), utils.addTestId(NAME.TRIGGERCOMPONENT, 'id')]"
+    :popperClass="utils.addTestId(`${NAME.TRIGGERCOMPONENT}-popperClass`, 'id')"
+    filterable
+    size="small">
+    <el-option
+      v-for="item in newOptions"
+      :key="item.value"
+      :label="utils.getLableByLang(item, lang)"
+      :value="item.value"
+    />
+  </el-select>
 </template>

@@ -11,14 +11,22 @@
   @include e(optionContent) {
     position: relative;
   }
-  @include e(add) {
+  @include e(operate) {
     position: absolute;
     left: 0;
     bottom: -20px;
     color: #000000;
-    span {
-      font-weight: 600;
-      color: var(--el-color-primary);
+    @include e(add) {
+      display: inline-block;
+      & > span {
+        font-weight: 600;
+        color: var(--el-color-primary);
+      }
+    }
+    @include e(font-size-12) {
+      margin-left: 20px;
+      font-size: 12px;
+      color: #CCCCCC;
     }
   }
 }

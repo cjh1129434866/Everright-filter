@@ -17,7 +17,7 @@ const _bem = (
 }
 const statePrefix = 'is-'
 export const useNamespace = (block, Namespace) => {
-  const defaultNamespace = Namespace || inject('Everright').state.Namespace
+  const defaultNamespace = Namespace || inject('Everright').state.Namespace // filter
   const namespace = `Everright-${defaultNamespace}`
   const b = (blockSuffix = '') =>
     _bem(namespace, block, blockSuffix, '', '')

@@ -1,3 +1,11 @@
+<!--
+ * @Author: panghu chenjh@datamargin.com
+ * @Date: 2024-05-09 11:26:29
+ * @LastEditors: panghu chenjh@datamargin.com
+ * @LastEditTime: 2024-08-05 17:45:41
+ * @FilePath: \Everright-filter\packages\filter\Item.vue
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 <script>
 import { computed, ref, reactive, provide, inject, toRefs, onMounted, watch, onBeforeUnmount } from 'vue'
 import NAME from '@ER/filter/name.js'
@@ -96,6 +104,8 @@ watch(state.rules, (newVal) => {
 const itemLabel = computed(() => {
   return lang.value === 'zh-cn' ? utils.digitalToChinese(props.parent.indexOf(props.id) + 1) : utils.digitalToEnglish(props.parent.indexOf(props.id) + 1)
 })
+
+const isAddConditionBtn = ref(true)
 </script>
 <template>
   <div :class="[ns.b()]">
@@ -109,6 +119,7 @@ const itemLabel = computed(() => {
         ref="optionContentRef"
         :class="[ns.e('optionContent'), 'EverrightFilterOptionContent']">
         <TransitionGroup name="el-fade-in">
+          <!-- 每一个rule代表一个条件 -->
           <Rule
             ref="ruleRef"
             :class="!isInConstraint && ns.e('rule')"
@@ -120,17 +131,24 @@ const itemLabel = computed(() => {
             :index="index + '-' + i"
           />
         </TransitionGroup>
-        <el-button
-          v-if="isInConstraint ? true : ER.isShowAdd.value"
-          :class="[ns.e('add')]"
-          v-bind="utils.addTestId('addCondition')"
-          @click="addRule"
-          link
-          size="small"
-          :icon="Delete"
-        ><el-icon><Plus /></el-icon>{{isInConstraint ? t(`er.${NAME.FILTERITEM}.addProp`) : t(`er.${NAME.FILTERITEM}.addCondition`)}}</el-button>
-        <div>
-          <el-button link></el-button>
+        <div :class="[ns.e('operate')]" @mouseenter="isAddConditionBtn = false" @mouseleave="isAddConditionBtn = true">
+          <el-button
+            v-if="isInConstraint ? true : ER.isShowAdd.value"
+            v-show="isAddConditionBtn"
+            :class="[ns.e('add')]"
+            v-bind="utils.addTestId('addCondition')"
+            @click="addRule"
+            link
+            size="small"
+            :icon="Delete"
+          ><el-icon><Plus /></el-icon>{{isInConstraint ? t(`er.${NAME.FILTERITEM}.addProp`) : t(`er.${NAME.FILTERITEM}.addCondition`)}}</el-button>
+          <div v-show="!isAddConditionBtn" :class="[ns.e('add-items')]">
+            <el-button type="primary" link>+ 标签</el-button>
+            <el-button type="primary" link>+ 客群</el-button>
+            <span :class="[ns.e('font-size-12')]">+ 明细数据</span>
+            <span :class="[ns.e('font-size-12')]">+ 客户数据</span>
+            <span :class="[ns.e('font-size-12')]">+ 行为数据</span>
+          </div>
         </div>
       </div>
     </div>

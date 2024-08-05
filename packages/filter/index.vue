@@ -173,6 +173,7 @@ const getRemoteData = async () => {
   state.loading = true
   try {
     const response = await api.getOptions()
+    console.log('response===', response)
     state.options = response.data.options
     state.operators = response.data.operators
     initConfiguration()

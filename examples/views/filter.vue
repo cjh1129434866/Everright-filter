@@ -148,6 +148,7 @@ const handleEvent = (type) => {
   }
 }
 const handleListener = ({ type, data }) => {
+  console.log('type===', type)
   // console.log(type)
   if (type === 'init') {
     handleEvent(1)

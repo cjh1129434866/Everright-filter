@@ -243,7 +243,7 @@ if (isTest) {
 <template>
   <el-popover
     placement="bottom"
-    :width="720"
+    width="auto"
     ref="popoverRef"
     :popperClass="utils.addTestId(`${NAME.DATECOMPONENT}-popperClass`, 'id')"
     trigger="click"
@@ -251,94 +251,103 @@ if (isTest) {
     virtual-triggering
     size="small"
   >
-    <div :class="[ns.e('shortcuts')]">
-      <el-button
-        @click="() => handleEvent('shortcuts', item)"
-        :class="[!!item.active && ns.is('active')]"
-        v-for="(item, index) in shortcuts"
-        :key="index"
-        v-show="!item.isShow"
-        v-bind="utils.addAttrs({
-          value: item.value
-        })"
-        size="small"
-      >
-        {{item.label}}
-      </el-button>
-    </div>
-    <div :class="[ns.e('manuals')]">
-      <template v-for="item in manuals" :key="item">
-        <DayHourComponent
-          v-if="item === 'intervalBefore'"
-          v-model="state.dynamicDate.intervalBefore"
-          @change="() => handleEvent('intervalBefore')"
-          a="20"
-          :prependLabel="t(`er.${NAME.DATECOMPONENT}.last`)"
-          v-bind="utils.addAttrs({
-            value: item
-          })"
-          :type="manualType"/>
-        <DayHourComponent
-          v-if="item === 'afterBefore'"
-          v-model="state.dynamicDate.afterBefore"
-          @change="() => handleEvent('afterBefore')"
-          :prependLabel="t(`er.${NAME.DATECOMPONENT}.next`)"
-          v-bind="utils.addAttrs({
-            value: item
-          })"
-          :type="manualType"/>
-        <DayHourComponent
-          v-if="item === 'erenowBefore'"
-          :appendLabel="t(`er.${NAME.DATECOMPONENT}.ago`)"
-          v-model="state.dynamicDate.erenowBefore"
-          @change="() => handleEvent('erenowBefore')"
-          v-bind="utils.addAttrs({
-            value: item
-          })"
-          :type="manualType"/>
-        <DayHourComponent
-          v-if="item === 'intervalBetween'"
-          :prependLabel="t(`er.${NAME.DATECOMPONENT}.last`)"
-          :isRange="true"
-          v-model="state.dynamicDate.intervalBetween"
-          @change="() => handleEvent('intervalBetween')"
-          v-bind="utils.addAttrs({
-            value: item
-          })"
-          :type="manualType"/>
-      </template>
-      <div
-        :class="[ns.e('includeToday')]"
-        v-show="state.isShowIncludeToday">
-        <el-checkbox
-          v-model="state.hasToday" :label="t(`er.${NAME.DATECOMPONENT}.today`)" :true-label="1" :false-label="0" size="small" />
-      </div>
-    </div>
-    <div :class="[ns.e('absolute')]">
-      <el-button
-        link
-        text
-        @click="() => handleEvent('staticDate')"
-        size="small"
-      >
-        {{t(`er.${NAME.DATECOMPONENT}.absolute`)}}<el-icon><svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" data-v-ea893728=""><path fill="currentColor" d="M128 384v512h768V192H768v32a32 32 0 1 1-64 0v-32H320v32a32 32 0 0 1-64 0v-32H128v128h768v64H128zm192-256h384V96a32 32 0 1 1 64 0v32h160a32 32 0 0 1 32 32v768a32 32 0 0 1-32 32H96a32 32 0 0 1-32-32V160a32 32 0 0 1 32-32h160V96a32 32 0 0 1 64 0v32zm-32 384h64a32 32 0 0 1 0 64h-64a32 32 0 0 1 0-64zm0 192h64a32 32 0 1 1 0 64h-64a32 32 0 1 1 0-64zm192-192h64a32 32 0 0 1 0 64h-64a32 32 0 0 1 0-64zm0 192h64a32 32 0 1 1 0 64h-64a32 32 0 1 1 0-64zm192-192h64a32 32 0 1 1 0 64h-64a32 32 0 1 1 0-64zm0 192h64a32 32 0 1 1 0 64h-64a32 32 0 1 1 0-64z"></path></svg></el-icon>
-      </el-button>
-    </div>
+    <el-tabs tab-position="left" style="height: 200px" class="demo-tabs">
+      <el-tab-pane label="时间范围" disabled></el-tab-pane>
+      <el-tab-pane label="动态日期">
+        <div :class="[ns.e('shortcuts')]">
+          <el-button
+            @click="() => handleEvent('shortcuts', item)"
+            :class="[!!item.active && ns.is('active')]"
+            v-for="(item, index) in shortcuts"
+            :key="index"
+            v-show="!item.isShow"
+            v-bind="utils.addAttrs({
+              value: item.value
+            })"
+            size="small"
+          >
+            {{item.label}}
+          </el-button>
+        </div>
+      </el-tab-pane>
+      <el-tab-pane label="区间日期">
+        <div :class="[ns.e('manuals')]">
+          <template v-for="item in manuals" :key="item">
+            <DayHourComponent
+              v-if="item === 'intervalBefore'"
+              v-model="state.dynamicDate.intervalBefore"
+              @change="() => handleEvent('intervalBefore')"
+              a="20"
+              :prependLabel="t(`er.${NAME.DATECOMPONENT}.last`)"
+              v-bind="utils.addAttrs({
+                value: item
+              })"
+              :type="manualType"/>
+            <DayHourComponent
+              v-if="item === 'afterBefore'"
+              v-model="state.dynamicDate.afterBefore"
+              @change="() => handleEvent('afterBefore')"
+              :prependLabel="t(`er.${NAME.DATECOMPONENT}.next`)"
+              v-bind="utils.addAttrs({
+                value: item
+              })"
+              :type="manualType"/>
+            <DayHourComponent
+              v-if="item === 'erenowBefore'"
+              :appendLabel="t(`er.${NAME.DATECOMPONENT}.ago`)"
+              v-model="state.dynamicDate.erenowBefore"
+              @change="() => handleEvent('erenowBefore')"
+              v-bind="utils.addAttrs({
+                value: item
+              })"
+              :type="manualType"/>
+            <DayHourComponent
+              v-if="item === 'intervalBetween'"
+              :prependLabel="t(`er.${NAME.DATECOMPONENT}.last`)"
+              :isRange="true"
+              v-model="state.dynamicDate.intervalBetween"
+              @change="() => handleEvent('intervalBetween')"
+              v-bind="utils.addAttrs({
+                value: item
+              })"
+              :type="manualType"/>
+          </template>
+          <div
+            :class="[ns.e('includeToday')]"
+            v-show="state.isShowIncludeToday">
+            <el-checkbox
+              v-model="state.hasToday" :label="t(`er.${NAME.DATECOMPONENT}.today`)" :true-label="1" :false-label="0" size="small" />
+          </div>
+        </div>
+      </el-tab-pane>
+      <el-tab-pane label="单个日期">
+        <!-- v-if="state.absolute" -->
+        <el-date-picker
+          :class="[ns.e('width'), v$.staticDate.$error && ER.props.isShowValidateState && 'ERFILTER-ERROR', utils.addTestId(`${NAME.DATECOMPONENT}-picker`, 'id') ]"
+          ref="staticDateRef"
+          :type="datePickerType"
+          clearable
+          valueFormat="X"
+          v-model="state.staticDate"
+          size="small"
+        />
+        <!-- <div :class="[ns.e('absolute')]">
+          <el-button
+            link
+            text
+            @click="() => handleEvent('staticDate')"
+            size="small"
+          >
+            {{t(`er.${NAME.DATECOMPONENT}.absolute`)}}<el-icon><svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" data-v-ea893728=""><path fill="currentColor" d="M128 384v512h768V192H768v32a32 32 0 1 1-64 0v-32H320v32a32 32 0 0 1-64 0v-32H128v128h768v64H128zm192-256h384V96a32 32 0 1 1 64 0v32h160a32 32 0 0 1 32 32v768a32 32 0 0 1-32 32H96a32 32 0 0 1-32-32V160a32 32 0 0 1 32-32h160V96a32 32 0 0 1 64 0v32zm-32 384h64a32 32 0 0 1 0 64h-64a32 32 0 0 1 0-64zm0 192h64a32 32 0 1 1 0 64h-64a32 32 0 1 1 0-64zm192-192h64a32 32 0 0 1 0 64h-64a32 32 0 0 1 0-64zm0 192h64a32 32 0 1 1 0 64h-64a32 32 0 1 1 0-64zm192-192h64a32 32 0 1 1 0 64h-64a32 32 0 1 1 0-64zm0 192h64a32 32 0 1 1 0 64h-64a32 32 0 1 1 0-64z"></path></svg></el-icon>
+          </el-button>
+        </div> -->
+      </el-tab-pane>
+    </el-tabs>
   </el-popover>
   <el-button
-    v-if="!manuals.length && !shortcuts.length ? false : (isShowSwitchButton || !isRange)"
-    :class="[ns.e('button'), v$.dynamicDate.$error && ER.props.isShowValidateState && 'ERFILTER-ERROR' ]"
-    ref="buttonRef" size="small">
-    {{buttonText}}<el-icon><svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" data-v-ea893728=""><path fill="currentColor" d="M128 384v512h768V192H768v32a32 32 0 1 1-64 0v-32H320v32a32 32 0 0 1-64 0v-32H128v128h768v64H128zm192-256h384V96a32 32 0 1 1 64 0v32h160a32 32 0 0 1 32 32v768a32 32 0 0 1-32 32H96a32 32 0 0 1-32-32V160a32 32 0 0 1 32-32h160V96a32 32 0 0 1 64 0v32zm-32 384h64a32 32 0 0 1 0 64h-64a32 32 0 0 1 0-64zm0 192h64a32 32 0 1 1 0 64h-64a32 32 0 1 1 0-64zm192-192h64a32 32 0 0 1 0 64h-64a32 32 0 0 1 0-64zm0 192h64a32 32 0 1 1 0 64h-64a32 32 0 1 1 0-64zm192-192h64a32 32 0 1 1 0 64h-64a32 32 0 1 1 0-64zm0 192h64a32 32 0 1 1 0 64h-64a32 32 0 1 1 0-64z"></path></svg></el-icon>
-  </el-button>
-  <el-date-picker
-    :class="[ns.e('width'), v$.staticDate.$error && ER.props.isShowValidateState && 'ERFILTER-ERROR', utils.addTestId(`${NAME.DATECOMPONENT}-picker`, 'id') ]"
-    ref="staticDateRef"
-    :type="datePickerType"
-    v-if="state.absolute"
-    clearable
-    valueFormat="X"
-    v-model="state.staticDate"
-    size="small"
-  />
+      v-if="!manuals.length && !shortcuts.length ? false : (isShowSwitchButton || !isRange)"
+      :class="[ns.e('button'), v$.dynamicDate.$error && ER.props.isShowValidateState && 'ERFILTER-ERROR' ]"
+      ref="buttonRef" size="small">
+      {{buttonText}}<el-icon><svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" data-v-ea893728=""><path fill="currentColor" d="M128 384v512h768V192H768v32a32 32 0 1 1-64 0v-32H320v32a32 32 0 0 1-64 0v-32H128v128h768v64H128zm192-256h384V96a32 32 0 1 1 64 0v32h160a32 32 0 0 1 32 32v768a32 32 0 0 1-32 32H96a32 32 0 0 1-32-32V160a32 32 0 0 1 32-32h160V96a32 32 0 0 1 64 0v32zm-32 384h64a32 32 0 0 1 0 64h-64a32 32 0 0 1 0-64zm0 192h64a32 32 0 1 1 0 64h-64a32 32 0 1 1 0-64zm192-192h64a32 32 0 0 1 0 64h-64a32 32 0 0 1 0-64zm0 192h64a32 32 0 1 1 0 64h-64a32 32 0 1 1 0-64zm192-192h64a32 32 0 1 1 0 64h-64a32 32 0 1 1 0-64zm0 192h64a32 32 0 1 1 0 64h-64a32 32 0 1 1 0-64z"></path></svg></el-icon>
+    </el-button>
 </template>

@@ -4,4 +4,5 @@ const modules = {}
 _.forIn(importModules, (func, path) => {
   modules[`${path.replace(/(.\/|\.vue)/g, '')}Component`] = func.default
 })
+console.log('modules===', modules)
 export default modules

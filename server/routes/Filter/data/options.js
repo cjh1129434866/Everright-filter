@@ -1,6 +1,69 @@
 export default {
   options: [
     {
+      label: '城市等级',
+      en_label: 'ChengShiDengJi',
+      value: 'city-level',
+      operatorKey: 'Enum', // 枚举
+      renderType: 'SELECT',
+      multiple: true
+    },
+    {
+      label: '会员等级',
+      en_label: 'HuiYuanDengJi',
+      value: 'member-level',
+      operatorKey: 'Enum', // 枚举
+      renderType: 'SELECT',
+      multiple: true
+    },
+    {
+      label: '年龄',
+      en_label: 'NianLing',
+      value: 'age',
+      operatorKey: 'Number', // 数字
+      renderType: 'NUMBER'
+    },
+    {
+      label: '持有资产余额',
+      en_label: 'ChiYouZiChanYuE',
+      value: 'balance',
+      operatorKey: 'Number', // 数字
+      renderType: 'NUMBER'
+    },
+    {
+      label: '收获地址',
+      en_label: 'ShouHuoDiZhi',
+      value: 'asddress',
+      operatorKey: 'Text', // 文本
+      renderType: 'TEXT',
+      excludeOperator: {
+        operator: ['equal', 'one_of', 'not_equal']
+      }
+    },
+    {
+      label: '开户日期',
+      en_label: 'KaiHuRiQi',
+      value: 'date-open',
+      operatorKey: 'Date',
+      renderType: 'DATE',
+      includeOperator: {
+        dateOperator: [
+          'date'
+        ]
+      },
+      excludeOperator: {
+        operator: ['greater_than', 'less_than', 'between']
+      }
+    },
+    {
+      label: '客群',
+      en_label: 'KeHun',
+      value: 'seg',
+      operatorKey: 'Seg',
+      renderType: 'SELECT',
+      hide: true
+    },
+    {
       label: '属性',
       en_label: 'properties',
       value: 'customer',
@@ -256,6 +319,46 @@ export default {
     }
   ],
   operators: {
+    Seg: [
+      {
+        label: '客群属于',
+        en_label: 'KeQunShuYu',
+        value: 'belong',
+        style: 'noop'
+      },
+      {
+        label: '客群不属于',
+        en_label: 'KeQunBuShuYu',
+        value: 'not_belong',
+        style: 'noop'
+      }
+    ],
+    Enum: [
+      {
+        label: '等于',
+        en_label: 'Equal',
+        value: 'equal',
+        style: 'noop'
+      },
+      {
+        label: '不等于',
+        en_label: 'Not equal',
+        value: 'not_equal',
+        style: 'noop'
+      },
+      {
+        label: '为空',
+        en_label: 'Empty',
+        value: 'empty',
+        style: 'none'
+      },
+      {
+        label: '不为空',
+        en_label: 'Not empty',
+        value: 'not_empty',
+        style: 'none'
+      }
+    ],
     Gender: [
       {
         label: '等于',
@@ -302,24 +405,6 @@ export default {
     ],
     Text: [
       {
-        label: '等于',
-        en_label: 'Equal',
-        value: 'equal',
-        style: 'noop'
-      },
-      {
-        label: '等于其中之一',
-        en_label: 'Equal to one of',
-        value: 'one_of',
-        style: 'tags'
-      },
-      {
-        label: '不等于',
-        en_label: 'Not equal',
-        value: 'not_equal',
-        style: 'noop'
-      },
-      {
         label: '包含',
         en_label: 'Contains',
         value: 'contains',
@@ -342,9 +427,13 @@ export default {
         en_label: 'Not empty',
         value: 'not_empty',
         style: 'none'
-      }
-    ],
-    Number: [
+      },
+      {
+        label: 'Like',
+        en_label: 'Like',
+        value: 'like',
+        style: 'none'
+      },
       {
         label: '等于',
         en_label: 'Equal',
@@ -352,9 +441,29 @@ export default {
         style: 'noop'
       },
       {
+        label: '等于其中之一',
+        en_label: 'Equal to one of',
+        value: 'one_of',
+        style: 'tags'
+      },
+      {
         label: '不等于',
         en_label: 'Not equal',
         value: 'not_equal',
+        style: 'noop'
+      }
+    ],
+    Number: [
+      {
+        label: '区间',
+        en_label: 'Between',
+        value: 'between',
+        style: 'range'
+      },
+      {
+        label: '等于',
+        en_label: 'Equal',
+        value: 'equal',
         style: 'noop'
       },
       {
@@ -382,10 +491,10 @@ export default {
         style: 'noop'
       },
       {
-        label: '区间',
-        en_label: 'Between',
-        value: 'between',
-        style: 'range'
+        label: '不等于',
+        en_label: 'Not equal',
+        value: 'not_equal',
+        style: 'noop'
       },
       {
         label: '为空',
@@ -470,21 +579,9 @@ export default {
         style: 'noop'
       },
       {
-        label: '大于',
-        en_label: 'Greater than',
-        value: 'greater_than',
-        style: 'noop'
-      },
-      {
         label: '大于等于',
         en_label: 'Greater than or equal to',
         value: 'greater_than_equal',
-        style: 'noop'
-      },
-      {
-        label: '小于',
-        en_label: 'Less than',
-        value: 'less_than',
         style: 'noop'
       },
       {
@@ -492,12 +589,6 @@ export default {
         en_label: 'Less than or equal to',
         value: 'less_than_equal',
         style: 'noop'
-      },
-      {
-        label: '区间',
-        en_label: 'Between',
-        value: 'between',
-        style: 'range'
       },
       {
         label: '为空',
@@ -510,6 +601,24 @@ export default {
         en_label: 'Not empty',
         value: 'not_empty',
         style: 'none'
+      },
+      {
+        label: '大于',
+        en_label: 'Greater than',
+        value: 'greater_than',
+        style: 'noop'
+      },
+      {
+        label: '小于',
+        en_label: 'Less than',
+        value: 'less_than',
+        style: 'noop'
+      },
+      {
+        label: '区间',
+        en_label: 'Between',
+        value: 'between',
+        style: 'range'
       }
     ],
     TimesOperators: [

@@ -2,7 +2,7 @@
  * @Author: panghu chenjh@datamargin.com
  * @Date: 2024-05-09 11:26:29
  * @LastEditors: panghu chenjh@datamargin.com
- * @LastEditTime: 2024-08-05 17:45:41
+ * @LastEditTime: 2024-08-06 16:39:03
  * @FilePath: \Everright-filter\packages\filter\Item.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -14,6 +14,7 @@ import hooks from '@ER/hooks'
 import Rule from './Rule.vue'
 import LogicalOperatorComponent from './components/LogicalOperator.vue'
 import utils from '@ER/utils'
+import { ElMessage } from 'element-plus'
 export default {
   name: NAME.FILTERITEM
 }
@@ -26,6 +27,8 @@ const {
   lang
 } = hooks.useI18n()
 const ERConstraint = inject('EverrightConstraint', '')
+const topGetData = inject('topGetData', () => ({}))
+const topSetData = inject('topSetData', () => ({}))
 const emit = defineEmits(['del'])
 const props = defineProps({
   id: {
@@ -58,9 +61,25 @@ const {
   ...toRefs(props),
   ruleRef
 })
-const addRule = () => {
-  if (ER.props.canAddRule() !== false) {
-    state.rules.push(...utils.generateItems(1))
+const addRule = (index, which = 'tag') => {
+  if (which === 'seg') {
+    const data = topGetData()
+    console.log('data===', data)
+    if (data.filters === undefined) {
+      ElMessage.warning('有表单尚未输入值')
+      return
+    }
+    data.filters[index].conditions.push({
+      operator: 'belong',
+      property: 'seg',
+      value: 'any'
+    })
+    console.log(data)
+    topSetData(data)
+  } else {
+    if (ER.props.canAddRule() !== false) {
+      state.rules.push(...utils.generateItems(1))
+    }
   }
 }
 defineExpose({
@@ -143,8 +162,10 @@ const isAddConditionBtn = ref(true)
             :icon="Delete"
           ><el-icon><Plus /></el-icon>{{isInConstraint ? t(`er.${NAME.FILTERITEM}.addProp`) : t(`er.${NAME.FILTERITEM}.addCondition`)}}</el-button>
           <div v-show="!isAddConditionBtn" :class="[ns.e('add-items')]">
-            <el-button type="primary" link>+ 标签</el-button>
-            <el-button type="primary" link>+ 客群</el-button>
+            <el-button type="primary" v-if="isInConstraint ? true : ER.isShowAdd.value" link  v-bind="utils.addTestId('addCondition')"
+            @click="addRule(index, 'tag')">+ 标签</el-button>
+            <el-button type="primary" v-if="isInConstraint ? true : ER.isShowAdd.value" link  v-bind="utils.addTestId('addCondition')"
+            @click="addRule(index, 'seg')">+ 客群</el-button>
             <span :class="[ns.e('font-size-12')]">+ 明细数据</span>
             <span :class="[ns.e('font-size-12')]">+ 客户数据</span>
             <span :class="[ns.e('font-size-12')]">+ 行为数据</span>

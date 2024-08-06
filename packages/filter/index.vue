@@ -213,17 +213,22 @@ const clearData = (type) => {
     state.logicalOperator = 'and'
   }
 }
+const setDataExposed = (...arg) => {
+  console.log('走这里了')
+  canFire = false
+  state.loading = true
+  setData(...arg)
+  canFire = true
+}
 defineExpose({
   getData,
-  setData: (...arg) => {
-    canFire = false
-    state.loading = true
-    setData(...arg)
-    canFire = true
-  },
+  setData: setDataExposed,
   pushData,
   clearData
 })
+
+provide('topGetData', getData)
+provide('topSetData', setDataExposed)
 const ns = hooks.useNamespace('Main', state.Namespace)
 const isShowOperator = computed(() => {
   return state.store.filters.length > 1

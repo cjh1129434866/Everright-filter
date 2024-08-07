@@ -79,6 +79,9 @@ watch(() => props.modelValue, (val, oldVal) => {
   deep: true
 })
 const handleEvent = (type, val) => {
+  console.log('走 date houre 的 handleEvent start -----------------------')
+  console.log(type, '----------------', val)
+  console.log('走 date houre 的 handleEvent end -----------------------')
   const result = {}
   if (props.isRange) {
     if (type === 'select') {

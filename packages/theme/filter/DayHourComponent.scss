@@ -32,17 +32,25 @@
     display: flex;
     align-items: center;
     &.el-select{
-      height: 28px;
-      width: 40px;
+      height: 22px;
+      width: 50px;
       right: 1px;
-      top: 1px;
+      top: 0px;
+      .el-select__wrapper {
+        width: 100%;
+        min-height: 20px !important;
+        border: none !important;
+        outline: none;
+      }
       .el-input{
+        border: none !important;
         .el-input__wrapper{
           box-shadow: none !important;
           padding: 0;
+          border: none !important;
           .el-input__inner{
-            line-height: 28px;
-            height: 28px;
+            line-height: 22px;
+            height: 22px;
             text-align: center;
           }
           .el-input__suffix{

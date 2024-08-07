@@ -37,8 +37,6 @@ export default {
     DateComponent: {
       today_today: '今日',
       today_thisWeek: '本周',
-      today_thisMonth: '本月',
-      today_thisYear: '今年',
       yesterday_onlineToday: '上线至今',
       yesterday_yesterday: '昨日',
       yesterday_lastWeek: '上周',
@@ -51,7 +49,27 @@ export default {
       ago: '前',
       absolute: '绝对时间',
       today: '含今天',
-      verify: '最长时间跨度支持90天'
+      verify: '最长时间跨度支持90天',
+      // 以下是cms画像平台定制
+      recent_1_day: '最近一天',
+      recent_3_day: '最近三天',
+      recent_7_day: '最近七天',
+      recent_14_day: '最近14天',
+      recent_30_day: '最近30天',
+      today_thisMonth: '本月',
+      recent_2_month: '最近2月',
+      recent_3_month: '最近3月',
+      recent_6_month: '最近6月',
+      recent_1_year: '最近1年',
+      today_thisYear: '今年',
+      custom: '自定义',
+      recent: '最近',
+      shortcut: '快捷选择',
+      dateSelect: '日期选择',
+      timeFrame: '时间范围',
+      dynamicDate: '动态日期',
+      intervalDate: '区间日期',
+      singleDate: '单个日期'
     }
   }
 }
